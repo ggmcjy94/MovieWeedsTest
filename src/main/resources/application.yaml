@@ -1,0 +1,28 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:/movie_project?serverTimezone=Asia/Seoul
+    username: root
+    password: gustjr0227
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    defer-datasource-initialization: true
+  sql.init.mode: always
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+
+#jwt:
+#  token:
+#    secret-key: aG91Mjctc2ltcGxlLXNwcmluZy1ib290LWFwaS1qd3QK
+#    expire-length: 30000000
+
+#elasticsearch:
+#  host: 127.0.0.1
+#  port: 9200
