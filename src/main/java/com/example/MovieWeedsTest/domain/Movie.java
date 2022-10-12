@@ -1,6 +1,7 @@
 package com.example.MovieWeedsTest.domain;
 
 import lombok.Getter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,5 +32,6 @@ public class Movie {
     private Integer revenue; // 수익
 
     @OneToMany(mappedBy = "movie")
+    @BatchSize(size = 20)
     private List<GenreMovie> genreMovies = new ArrayList<>();
 }

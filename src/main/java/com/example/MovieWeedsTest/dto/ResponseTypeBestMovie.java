@@ -6,16 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseMovie {
+public class ResponseTypeBestMovie {
 
     private Long id;
     private String title;
@@ -31,9 +28,10 @@ public class ResponseMovie {
     private Integer runtime;
     private Integer budget;
     private Integer revenue;
-    private List<ResponseGenre> genres;
 
-    public ResponseMovie(Movie m) {
+    private Long[] genres_id;
+
+    public ResponseTypeBestMovie(Movie m) {
         this.id = m.getId();
         this.title = m.getTitle();
         this.language = m.getLanguage();
@@ -47,23 +45,12 @@ public class ResponseMovie {
         this.runtime = m.getRuntime();
         this.budget = m.getBudget();
         this.revenue = m.getRevenue();
-        this.genres = m.getGenreMovies().stream().map(ResponseGenre::new).collect(Collectors.toList());
+        List<ResponseTypeBestGenre> collect = m.getGenreMovies().stream().map(ResponseTypeBestGenre::new).toList();
+        this.genres_id = new Long[collect.size()];
+        for (int i = 0; i < collect.size(); i++) {
+            this.genres_id[i] = collect.get(i).getId();
+        }
+
     }
 
-    public ResponseMovie(GenreMovie gm) {
-        this.id = gm.getMovie().getId();
-        this.title = gm.getMovie().getTitle();
-        this.language = gm.getMovie().getLanguage();
-        this.overview = gm.getMovie().getOverview();
-        this.popularity = gm.getMovie().getPopularity();
-        this.grade = gm.getMovie().getGrade();
-        this.gradeCount = gm.getMovie().getGradeCount();
-        this.posterPath = gm.getMovie().getPosterPath();
-        this.status = gm.getMovie().getStatus();
-        this.releaseDate = gm.getMovie().getReleaseDate();
-        this.runtime = gm.getMovie().getRuntime();
-        this.budget = gm.getMovie().getBudget();
-        this.revenue = gm.getMovie().getRevenue();
-        this.genres = gm.getMovie().getGenreMovies().stream().map(ResponseGenre::new).collect(Collectors.toList());
-    }
 }

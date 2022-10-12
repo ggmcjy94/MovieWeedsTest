@@ -7,6 +7,10 @@ spring:
     password: gustjr0227
 
   jpa:
+    properties:
+      hibernate:
+        #firstresult/maxresults specified with collection fetch; applying in memory 가 나와 설정
+        default_batch_fetch_size: 20
     open-in-view: false
     hibernate:
       ddl-auto: create

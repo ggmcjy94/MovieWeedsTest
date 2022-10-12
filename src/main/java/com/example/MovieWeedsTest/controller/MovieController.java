@@ -1,6 +1,6 @@
 package com.example.MovieWeedsTest.controller;
 
-import com.example.MovieWeedsTest.dto.ResponseMovie;
+import com.example.MovieWeedsTest.dto.ResponseTypeBestMovie;
 import com.example.MovieWeedsTest.dto.ResponsePage;
 import com.example.MovieWeedsTest.service.MovieService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class MovieController {
     private final MovieService movieService;
 
     @GetMapping("/all")
-    public ResponseEntity<ResponsePage<List<ResponseMovie>>> getAllMoviesController(Pageable pageable) {
+    public ResponseEntity<ResponsePage<List<ResponseTypeBestMovie>>> getAllMoviesController(Pageable pageable) {
         return new ResponseEntity<>(
                 new ResponsePage<>(
                         pageable.getPageNumber(),
@@ -34,13 +34,17 @@ public class MovieController {
     }
 
     @GetMapping("/type-best")
-    public ResponseEntity<ResponsePage<List<ResponseMovie>>> getAllTypeBestMoviesController(@RequestParam(value = "genres", required = false) String genres_name,
-                                                                                            Pageable pageable) {
+    public ResponseEntity<ResponsePage<List<ResponseTypeBestMovie>>> getAllTypeBestMoviesController(@RequestParam(value = "genres", required = false) Long genres_id,
+                                                                                                    Pageable pageable) {
+
+        List<ResponseTypeBestMovie> responseMovies = movieService.findAllMovieTypeBestService(genres_id, pageable);
 
         return new ResponseEntity<>(
                 new ResponsePage<>(
                         pageable.getPageNumber(),
-                        movieService.findAllMovieTypeBestService(genres_name,pageable),
-                        movieService.findAllMovieTypeBestService(genres_name, pageable).size()), HttpStatus.OK);
+                        responseMovies,
+                        responseMovies.size()), HttpStatus.OK);
     }
+
+
 }
