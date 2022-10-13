@@ -24,4 +24,7 @@ public class Genre {
     @OneToMany(mappedBy = "genre")
     private List<GenreMovie> genreMovies = new ArrayList<>();
 
+    @OneToMany(mappedBy = "genre")
+    private List<MemberGenre> memberGenres = new ArrayList<>();
+
 }

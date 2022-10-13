@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,11 @@ public class Movie {
     private Integer gradeCount; // 평점측정인수
     private String posterPath; // 영화 포스터
     @Column(nullable = false)
-    private LocalDateTime releaseDate; // 개봉 날짜 (한국 기준)
+    private LocalDate releaseDate; // 개봉 날짜 (한국 기준)
     private Integer runtime; // 영화 시간
     private Integer budget; //제작비
-    private String status; // 개봉 여부
     private Integer revenue; // 수익
 
     @OneToMany(mappedBy = "movie")
-    @BatchSize(size = 20)
     private List<GenreMovie> genreMovies = new ArrayList<>();
 }
