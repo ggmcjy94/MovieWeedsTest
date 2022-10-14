@@ -1,4 +1,4 @@
-package com.example.MovieWeedsTest.dto.page;
+package com.example.MovieWeedsTest.dto.response.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,5 +1,6 @@
 package com.example.MovieWeedsTest.domain;
 
+import com.example.MovieWeedsTest.dto.request.RequestRecommendGenres;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,9 @@ public class MemberGenre {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id")
     private Genre genre;
+
+    public MemberGenre(Member member, Genre genre) {
+        this.member = member;
+        this.genre = genre;
+    }
 }

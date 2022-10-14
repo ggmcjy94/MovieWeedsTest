@@ -39,10 +39,9 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers(
-                        "/member/**",
                         "/movie/**",
-                        "/signUp",
-                        "/signIn")
+                        "/member/sign-up",
+                        "/member/sign-in")
                 .permitAll()
                 .anyRequest().authenticated();
 

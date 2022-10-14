@@ -1,6 +1,6 @@
 package com.example.MovieWeedsTest.domain;
 
-import com.example.MovieWeedsTest.dto.RequestSignUpMember;
+import com.example.MovieWeedsTest.dto.request.RequestAuthMember;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,8 +30,11 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<MemberGenre> memberGenres = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<MemberMovie> memberMovies = new ArrayList<>();
 
-    public Member(RequestSignUpMember requestMember, PasswordEncoder bCryptPasswordEncoder) {
+
+    public Member(RequestAuthMember requestMember, PasswordEncoder bCryptPasswordEncoder) {
         this.email = requestMember.getEmail();
         this.password = bCryptPasswordEncoder.encode(requestMember.getPassword());
 

@@ -19,11 +19,13 @@ insert into genre (name) values ('코미디');--18
 insert into genre (name) values ('판타지');--19
 
 
+-- 이것은 임의의 데이터 이다 보니 popularity,grade,grade_count
+-- 해당 데이터들은 임의로 넣어줌 원래는 영화를 생성 하면 서 memberMovie 에 관한 필드 데이터를 참조해 데이터를 넣어 주어야 함
 insert into movie
 (title,language,overview,popularity,grade,grade_count,poster_path,release_date,runtime,budget,revenue)
 values ('오펀: 천사의탄생', 'en' ,
 '엄청난 비밀을 숨긴 사이코패스가 에스토니아의 정신병동을 탈출,\r 부유한 가족의 실종된 딸 ‘에스더’로 사칭해 미국에 온다.\r 재회의 기쁨도 잠시, 어딘지 낯선 딸의 정체를 눈치챈 엄마는\r 가족을 지키기 위해 에스더와 맞서는데...  누구도 상상 못한 충격적인 반전이 기다린다!',
- 1, 0,0, '/vKIhsEVEtLTwTkmLSDNi230Zr3Q.jpg','2022-07-27',99,0,9572765 );
+ 0, 0,0, '/vKIhsEVEtLTwTkmLSDNi230Zr3Q.jpg','2022-07-27',99,0,9572765 );
 
 insert into movie
 (title,language,overview,popularity,grade,grade_count,poster_path,release_date,runtime,budget,revenue)
@@ -67,6 +69,47 @@ insert into genre_movie (movie_id, genre_id) values (4, 8);
 insert into genre_movie (movie_id, genre_id) values (5, 4);
 insert into genre_movie (movie_id, genre_id) values (5, 12);
 
+insert into member (email, password) values
+('lhs@gmail', '$2a$12$A83JpcerXCx4L1ifd1D5/O.vZIBgW2sNxETls4Ho.eeiYNCDucSJ6'); --1234
+insert into member (email, password) values
+('hyun@gmail', '$2a$12$wi2gTjxUL4qtD3NM84PAmuzitTukWyKx2NpowIUdBflv/UnLHqCGa'); -- 12345
+insert into member (email, password) values
+('seok@gmail', '$2a$12$fRtr1D4Zt8fqyrmrDCgvo.qAEjGcEWA0JR/.HgDOLuchHZ7uuqqze'); -- 123456
+
+
+
+
+
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(1, 1, 1.0, true,'2022-09-14');
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(1, 2, 1.0, false,'2022-09-11');
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(1, 3, 1.0, true,'2022-10-11');
+--insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+--(1, 4, 1.0, true,'2022-10-14');
+--insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+--(1, 5, 1.0, true,'2022-10-14');
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(2, 1, 1.0, true,'2022-09-14');
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(2, 2, 1.0, false,'2022-09-14');
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(2, 3, 1.0, true,'2022-10-11');
+--insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+--(2, 4, 1.0, true,'2022-10-14');
+--insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+--(2, 5, 1.0, true,'2022-10-14');
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(3, 1, 1.0, true,'2022-09-14');
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(3, 2, 1.0, false,'2022-10-11');
+insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+(3, 3, 1.0, true,'2022-09-14');
+--insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+--(3, 4, 1.0, true,'2022-10-14');
+--insert into member_movie (member_id, movie_id, user_grade,popularity,popularity_created_date) values
+--(3, 5, 1.0, true,'2022-10-14');
 
 
 

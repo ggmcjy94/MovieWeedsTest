@@ -21,9 +21,9 @@ public class Movie {
     private String title; // 영화 영어 제목 (한국어 기준)
     private String language; // 영화 언어
     private String overview; // 영화 개요 (한국어 기준)
-    private Double popularity; // 인기 좋아요 평점
-    private Double grade; //평점
-    private Integer gradeCount; // 평점측정인수
+    private Integer popularity; // 토탈 좋아요
+    private Double grade; // 영화 평균 평점
+    private Integer gradeCount; // 평점 측정인수
     private String posterPath; // 영화 포스터
     @Column(nullable = false)
     private LocalDate releaseDate; // 개봉 날짜 (한국 기준)
@@ -33,4 +33,12 @@ public class Movie {
 
     @OneToMany(mappedBy = "movie")
     private List<GenreMovie> genreMovies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "movie")
+    private List<MemberMovie> memberMovies = new ArrayList<>();
+
+    public void plusGradeCount() {
+        this.gradeCount+=1;
+    }
+
 }

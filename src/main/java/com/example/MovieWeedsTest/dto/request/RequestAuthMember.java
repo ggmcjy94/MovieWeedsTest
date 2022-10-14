@@ -1,4 +1,4 @@
-package com.example.MovieWeedsTest.dto;
+package com.example.MovieWeedsTest.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RequestSignInMember {
+public class RequestAuthMember {
 
     @NotEmpty(message = "이메일을 입력 해주세요")
     @Email
