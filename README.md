@@ -20,6 +20,10 @@ Spring Boot
 * Spring Security
 * JWT
 
+Data Base 
+
+ * MySQL
+
 
 ## api 문서 
 
