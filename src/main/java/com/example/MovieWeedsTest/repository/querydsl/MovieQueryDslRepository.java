@@ -36,7 +36,7 @@ public class MovieQueryDslRepository extends QuerydslRepositorySupport {
         JPAQuery<Movie> movieJPAQuery = basicSelect();
 
         if (genres_id != null) {
-            movieJPAQuery.where(movie.genreMovies.any().genre.id.eq(genres_id));
+            movieJPAQuery = movieJPAQuery.where(movie.genreMovies.any().genre.id.eq(genres_id));
         }
 
         popularityExists(popularity, movieJPAQuery);
@@ -47,11 +47,12 @@ public class MovieQueryDslRepository extends QuerydslRepositorySupport {
 
     public PageImpl<Movie> findAllMovieSneakPeek(Long genres_id, String popularity, LocalDate now, Pageable pageable) {
         JPAQuery<Movie> movieJPAQuery = basicSelect();
-        movieJPAQuery.where(movie.releaseDate.between(now.plusDays(1), now.plusMonths(2)));
 
         if (genres_id != null) {
             movieJPAQuery = movieJPAQuery.where(movie.genreMovies.any().genre.id.eq(genres_id)
-                            .and(movie.releaseDate.between(now.plusDays(1), now.plusMonths(2))));
+                    .and(movie.releaseDate.between(now.plusDays(1), now.plusMonths(2))));
+        } else {
+            movieJPAQuery = movieJPAQuery.where(movie.releaseDate.between(now.plusDays(1), now.plusMonths(2)));
         }
 
         popularityExists(popularity, movieJPAQuery);
@@ -93,23 +94,18 @@ public class MovieQueryDslRepository extends QuerydslRepositorySupport {
 
 
     public PageImpl<Movie> findAllMemberMovieRecommendService(List<Long> memberRecommendMovies_id, Pageable pageable) {
-        JPAQuery<Movie> movieJPAQuery = basicSelect();
-        for (Long aLong : memberRecommendMovies_id) {
-            log.info("aLong {}" , aLong);
-        }
-        movieJPAQuery.where(movie.genreMovies.any().genre.id.in(memberRecommendMovies_id)).orderBy(movie.popularity.desc());
+
+        JPAQuery<Movie> movieJPAQuery =
+                basicSelect()
+                .where(movie.genreMovies.any().genre.id.in(memberRecommendMovies_id))
+                        .orderBy(movie.popularity.desc());
 
         List<Movie> result = Objects.requireNonNull(getQuerydsl()).applyPagination(pageable, movieJPAQuery).fetch();
-        for (Movie test : result) {
-            log.info("test.getId() {}" , test.getId());
-        }
         return new PageImpl<>(result, pageable, result.size());
     }
 
-
-
-
     private void popularityExists(String popularity, JPAQuery<Movie> movieJPAQuery) {
+
         if (popularity.equals("desc")) {
             movieJPAQuery.orderBy(movie.popularity.desc());
         } else if (popularity.equals("asc")) {
@@ -119,21 +115,9 @@ public class MovieQueryDslRepository extends QuerydslRepositorySupport {
         }
     }
 
-
-
-
     private JPAQuery<Movie> basicSelect() {
+
         return queryFactory.selectFrom(movie);
     }
-
-    private boolean popularityExists(String popularity) {
-        if (popularity != null) {
-            popularity = popularity.toLowerCase();
-            return true;
-        }
-        return false;
-    }
-
-
 
 }

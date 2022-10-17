@@ -7,7 +7,6 @@ import com.example.MovieWeedsTest.domain.Genre;
 import com.example.MovieWeedsTest.domain.Member;
 import com.example.MovieWeedsTest.domain.MemberGenre;
 import com.example.MovieWeedsTest.dto.request.RequestAuthMember;
-import com.example.MovieWeedsTest.dto.request.RequestMemberMovieGrade;
 import com.example.MovieWeedsTest.dto.request.RequestRecommendGenres;
 import com.example.MovieWeedsTest.exception.NumberLimitException;
 import com.example.MovieWeedsTest.exception.UserNotFoundException;
@@ -37,7 +36,6 @@ public class MemberService {
     private final JwtTokenProvider jwtTokenProvider;
     private final MemberGenreRepository memberGenreRepository;
     private final AuthenticationManager authenticationManager;
-
     private final GenreRepository genreRepository;
 
     public void newMemberCreate(RequestAuthMember requestAuthMember) {
@@ -66,14 +64,8 @@ public class MemberService {
         }
     }
 
-
-
     public Member getAuthenticationUser(UserDetails userDetails) {
-        if (userDetails != null) {
-            return memberRepository.findByEmail(userDetails.getUsername()).orElseThrow(UserNotFoundException::new);
-        } else {
-            throw new RuntimeException();
-        }
+        return memberRepository.findByEmail(userDetails.getUsername()).orElseThrow(UserNotFoundException::new);
     }
 
 
