@@ -35,7 +35,6 @@ public class MovieService {
     private final MemberService memberService;
     private final MovieRepository movieRepository;
     private final MovieQueryDslRepository movieQueryDslRepository;
-
     private final MemberMovieRepository memberMovieRepository;
 
     public List<ResponseMovie> findAllService(Pageable pageable) {
@@ -84,9 +83,6 @@ public class MovieService {
         return movies.stream().map(ResponseMoviesRecommend::new).collect(Collectors.toList());
     }
 
-
-
-
     public void giveGradeService(Long movie_id, UserDetails userDetails, RequestMemberMovieGrade grade) {
         Member member = memberService.getAuthenticationUser(userDetails);
         Movie movie = findById(movie_id);
@@ -108,7 +104,7 @@ public class MovieService {
             memberMovieRepository.save(new MemberMovie(member, movie, popularity));
         }
     }
-    //update mapping 및 delete mapping 시 사용
+
     private MemberMovie findByMemberAndMovie(Member member,Movie movie) {
         return memberMovieRepository.findByMemberAndMovie(member, movie).orElse(null);
 
