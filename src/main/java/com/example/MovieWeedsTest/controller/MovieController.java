@@ -8,7 +8,6 @@ import com.example.MovieWeedsTest.dto.response.ResponseMoviesRecommend;
 import com.example.MovieWeedsTest.dto.response.ResponseMoviesTrending;
 import com.example.MovieWeedsTest.dto.response.page.ReleaseDate;
 import com.example.MovieWeedsTest.dto.response.page.ResponsePage;
-import com.example.MovieWeedsTest.service.MemberService;
 import com.example.MovieWeedsTest.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,13 +28,12 @@ import java.util.List;
 public class MovieController {
 
     private final MovieService movieService;
-    private final MemberService memberService;
 
 
     @GetMapping("/type-best")
     public ResponseEntity<ResponsePage<?>> getAllTypeBestMoviesController(@RequestParam(value = "genres", required = false) Long genres_id,
-                                                                                            @RequestParam(value = "popularity", required = false, defaultValue = "desc") String popularity,
-                                                                                            Pageable pageable) {
+                                                                          @RequestParam(value = "popularity", required = false, defaultValue = "desc") String popularity,
+                                                                          Pageable pageable) {
 
         log.info("popularity {}" , popularity);
         List<ResponseMovie> responseMovies = movieService.findAllMovieTypeBestService(popularity,genres_id, pageable);
@@ -51,8 +49,8 @@ public class MovieController {
 
     @GetMapping("/sneak-peek")
     public ResponseEntity<ResponsePage<?>> getAllSneakPeekMoviesController(@RequestParam(value = "genres", required = false) Long genres_id,
-                                                                                                      @RequestParam(value = "popularity", required = false, defaultValue = "desc") String popularity,
-                                                                                                      Pageable pageable) {
+                                                                           @RequestParam(value = "popularity", required = false, defaultValue = "desc") String popularity,
+                                                                           Pageable pageable) {
 
         List<ResponseMovieSneakPeek> responseMovies = movieService.findAllMovieSneakPeekService(genres_id, popularity,LocalDate.now(), pageable);
         return new ResponseEntity<>(
@@ -74,7 +72,7 @@ public class MovieController {
 
     @GetMapping("/recommend")
     public ResponseEntity<ResponsePage<?>> getRecommendMoviesController(@AuthenticationPrincipal UserDetails userDetails,
-                                                                                              Pageable pageable) {
+                                                                        Pageable pageable) {
         List<ResponseMoviesRecommend> responseUserRecommendMovies = movieService.findAllMovieRecommendService(userDetails,pageable);
         return new ResponseEntity<>(
                 ResponsePage
@@ -85,10 +83,6 @@ public class MovieController {
                         .build(), HttpStatus.OK);
     }
 
-
-    /**
-     * 기간별 트렌딩 구별은 좋아요 보다는 조회수로 조회 하는게 더 나은 방법인거 같다.
-     */
     @GetMapping("/trending/{today_weekly}")
     public ResponseEntity<ResponsePage<?>> getTrendingMoviesController(@PathVariable("today_weekly") String today_weekly,
                                                                        Pageable pageable) {
