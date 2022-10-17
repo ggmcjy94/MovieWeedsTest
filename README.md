@@ -21,8 +21,8 @@ Spring Boot
 * JWT
 
 
-api 문서 
+##api 문서 
 
-- movieWeeds-api.xlsx
+* movieWeeds-api.xlsx
 
 
