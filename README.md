@@ -20,9 +20,11 @@ Spring Boot
 * Spring Security
 * JWT
 
+Data Base 
+
+ * MySQL
+
 
 ## api 문서 
 
-* [movieWeeds-api.xlsx](https://github.com/ggmcjy94/MovieWeedsTest/files/9796993/movieWeeds-api.xlsx)
-
-
+* [movieWeeds-api.xlsx](https://github.com/ggmcjy94/MovieWeedsTest/files/9797145/movieWeeds-api.xlsx)
