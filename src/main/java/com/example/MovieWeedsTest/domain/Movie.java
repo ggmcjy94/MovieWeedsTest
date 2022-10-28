@@ -1,6 +1,8 @@
 package com.example.MovieWeedsTest.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Entity
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie {
 
     @Id
@@ -36,6 +40,21 @@ public class Movie {
 
     @OneToMany(mappedBy = "movie")
     private List<MemberMovie> memberMovies = new ArrayList<>();
+
+    public Movie(Long id, String title, String language, String overview, Integer popularity, Double grade, Integer gradeCount, String posterPath, LocalDate releaseDate, Integer runtime, Integer budget, Integer revenue) {
+        this.id = id;
+        this.title = title;
+        this.language = language;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.grade = grade;
+        this.gradeCount = gradeCount;
+        this.posterPath = posterPath;
+        this.releaseDate = releaseDate;
+        this.runtime = runtime;
+        this.budget = budget;
+        this.revenue = revenue;
+    }
 
     public void plusGradeCount() {
         this.gradeCount+=1;

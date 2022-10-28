@@ -31,12 +31,12 @@ public class MovieController {
 
 
     @GetMapping("/type-best")
-    public ResponseEntity<ResponsePage<?>> getAllTypeBestMoviesController(@RequestParam(value = "genres", required = false) Long genres_id,
+    public ResponseEntity<ResponsePage<?>> getAllTypeBestMoviesController(@RequestParam(value = "genre", required = false) Long genre_id,
                                                                           @RequestParam(value = "popularity", required = false, defaultValue = "desc") String popularity,
                                                                           Pageable pageable) {
 
         log.info("popularity {}" , popularity);
-        List<ResponseMovie> responseMovies = movieService.findAllMovieTypeBestService(popularity,genres_id, pageable);
+        List<ResponseMovie> responseMovies = movieService.findAllMovieTypeBestService(popularity,genre_id, pageable);
 
         return new ResponseEntity<>(
                 ResponsePage
@@ -48,11 +48,11 @@ public class MovieController {
     }
 
     @GetMapping("/sneak-peek")
-    public ResponseEntity<ResponsePage<?>> getAllSneakPeekMoviesController(@RequestParam(value = "genres", required = false) Long genres_id,
+    public ResponseEntity<ResponsePage<?>> getAllSneakPeekMoviesController(@RequestParam(value = "genre", required = false) Long genre_id,
                                                                            @RequestParam(value = "popularity", required = false, defaultValue = "desc") String popularity,
                                                                            Pageable pageable) {
 
-        List<ResponseMovieSneakPeek> responseMovies = movieService.findAllMovieSneakPeekService(genres_id, popularity,LocalDate.now(), pageable);
+        List<ResponseMovieSneakPeek> responseMovies = movieService.findAllMovieSneakPeekService(genre_id, popularity,LocalDate.now(), pageable);
         return new ResponseEntity<>(
                         ResponsePage
                                 .builder()

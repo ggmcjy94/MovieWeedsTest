@@ -49,4 +49,18 @@ public class ResponseMovie {
         }
     }
 
+    public ResponseMovie(Long id, String title, String language, String overview, Integer popularity, Double grade, Integer gradeCount, String posterPath, LocalDate releaseDate, Integer runtime, Integer budget, Integer revenue) {
+        this.id = id;
+        this.title = title;
+        this.language = language;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.grade = grade;
+        this.gradeCount = gradeCount;
+        this.posterPath = posterPath;
+        this.releaseDate = releaseDate;
+        this.runtime = runtime;
+        this.budget = budget;
+        this.revenue = revenue;
+    }
 }
