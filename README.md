@@ -5,7 +5,7 @@
 * Intellij IDEA
 * Java
 * Gradle
-* Spring Boot 2.x
+* Spring Boot 
 
 ## 기술 세부 스택
 
